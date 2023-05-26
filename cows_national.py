@@ -1,13 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from cycler import cycler
 def open_file(fp):
-    file = open(fp)
-    file = file.read().replace("\n", ",").split(",")
-    file = file[3:len(file)-1]
-    
-    for i in range(0, len(file), 6):
-        pass
-    return file
-
-test = open("data/cows/TotalBeef_Cattle_National.csv", "r")
-test = test.read().replace("\n", ",").split(",")
-print(test)
+    #opening file, removing blank space at end and headers
+    f = open(fp, "r")
+    f = f.read().split("\n")
+    f = f[1:len(f)-1]
+    #removing all JULY entries
+    f1 = [] 
+    for i in range(len(f)):
+        if f[i][15:18] != 'JUL':
+            f1.append(f[i])
+    #placing values into dictionary. {year : amnt of cows}
+    f = ','.join(f1).split(",")
+    d = {}
+    for i in range(0, len(f), 3):
+        d[f[i]] = int(f[i+2])
+    return d
+        
+def create_graph(d):
 
