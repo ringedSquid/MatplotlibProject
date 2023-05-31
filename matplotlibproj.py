@@ -1,4 +1,18 @@
-from matplotlib import pyplot as plt
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from cycler import cycler
+
+def setup():
+    #opens stylesheet and changes style parameters
+    stylesheet = open("stylesheet.txt").read().replace(" ", "").split("\n")
+    stylesheet = stylesheet[:len(stylesheet)-1]
+    for i in stylesheet:
+        s = i.split(":")
+        mpl.rcParams[s[0]] = s[1]
+    mpl.rcParams['figure.figsize'] = [10, 6]
+    
+    return
 
 def sheepgraph(x):
     file = open(x)
@@ -103,9 +117,9 @@ def hogsgraph(x):
     print(valuelist)
     plt.plot(yearlist,valuelist)
 
-goatsgraph("Goats.csv")
-sheepgraph("Sheep.csv")
-hogsgraph("Hogs.csv")
+goatsgraph("data/goats/Total_Goats_National.csv")
+sheepgraph("data/sheep/Total_Sheep_National.csv")
+hogsgraph("data/hogs/Total_Hogs_National.csv")
 
 plt.ylim([0, 80000000])
 plt.show()

@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 
 def animalgraph():
-    file = open('Cow_beef_pop.csv')
+    file = open('data/goats/Total_Goats_National.csv')
     text = file.read()
     text = text.replace('"', '')
     text = text.replace('\n',',')

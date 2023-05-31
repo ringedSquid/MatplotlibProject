@@ -44,6 +44,18 @@ def create_graph(fp, t, c):
     plt.savefig(storepath + fp[:len(fp)-1] + ".png")
     return
 
+def create_big_graph(bd, t, fn):
+    plt.clf()
+    plt.title(t)
+    plt.xlabel("Year")
+    plt.ylabel("Cows")
+    for k in bd.keys():
+        d = open_file(datapath + bd[k][0])
+        x = [int(i) for i in d.keys()]
+        y = list(d.values())
+        plt.plot(x, y, label=k, color=bd[k][1])
+    plt.savefig(storepath + fn + ".png")
+
 
 def main():
     setup()
@@ -54,5 +66,6 @@ def main():
         }
     for k in datafiles.keys():
         create_graph(datafiles[k][0], k, datafiles[k][1])
+    #create_big_graph(datafiles, "All Cows", "All_Cows") 
     return
 main()

@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from cycler import cycler
-datapath = "data/cows/"
-storepath = "graphs/cows/"
+datapath = "data/"
+storepath = "graphs/"
 
 def setup():
     #opens stylesheet and changes style parameters
@@ -13,8 +13,9 @@ def setup():
         s = i.split(":")
         mpl.rcParams[s[0]] = s[1]
     mpl.rcParams['figure.figsize'] = [10, 6]
-    
+
     return
+
 def open_file(fp):
     #opening file, removing blank space at end and headers
     f = open(fp, "r")
@@ -31,28 +32,8 @@ def open_file(fp):
     for i in range(0, len(f), 3):
         d[f[i]] = int(f[i+2])
     return d
-        
-def create_graph(fp, t, c):
-    plt.clf()
-    d = open_file(datapath + fp)
-    x = [int(i) for i in d.keys()] 
-    y = list(d.values())
-    plt.title(t)
-    plt.xlabel("Year")
-    plt.ylabel("Cows")
-    plt.plot(x, y, color=c)
-    plt.savefig(storepath + fp[:len(fp)-1] + ".png")
-    return
+
+def animal_to_methane(d, ae):
+    ch4_pwd = 28.5
 
 
-def main():
-    setup()
-    datafiles = {
-            "Total Beef Cattle" : ["TotalBeef_Cattle_National.csv", 'r'],
-            "Total Cattle & Calves" : ["Total_CattleCalves_National.csv", 'b'],
-            "Total Milk Cattle" : ["TotalMilk_Cattle_National.csv", 'g']
-        }
-    for k in datafiles.keys():
-        create_graph(datafiles[k][0], k, datafiles[k][1])
-    return
-main()
