@@ -19,7 +19,7 @@ def open_file(fp):
     #opening file, removing blank space at end and headers
     f = open(fp, "r")
     f = f.read().split("\n")
-    f = f[1:len(f)-1]
+    f = f[:len(f)-1]
     f = ','.join(f).split(",")
     d = {}
     for i in range(0, len(f), 2):
@@ -60,7 +60,7 @@ def main():
             "Total Hogs" : ["hogs/Total_Hogs_National.csv", 'purple'],
             "Total Sheep" : ["sheep/Total_Sheep_National.csv", 'brown'],
             "Total Beef Cattle" : ["cows/TotalBeef_Cattle_National.csv", 'r'],
-            "Total Cattle & Calves" : ["cows/Total_CattleCalves_National.csv", 'b'],
+            "Total Cattle" : ["cows/Total_Cattle_National.csv", 'b'],
             "Total Milk Cattle" : ["cows/TotalMilk_Cattle_National.csv", 'g'],
             "Total Chicken" : ["chicken/Total_Chicken_National.csv", 'cyan'],
             "Total Bison" : ["bison/Total_Bison_National.csv", "magenta"],
@@ -73,7 +73,7 @@ def main():
             "Goats" : ["goats/Total_Goats_National.csv", 'orange'],
             "Hogs" : ["hogs/Total_Hogs_National.csv", 'blue'],
             "Sheep" : ["sheep/Total_Sheep_National.csv", 'green'],
-            "Cows" : ["cows/Total_CattleCalves_National.csv", 'red'],
+            "Cows" : ["cows/Total_Cattle_National.csv", 'red'],
             "Chicken": ["chicken/Total_Chicken_National.csv", 'purple'],
             "Bison" : ["bison/Total_Bison_National.csv", "magenta"],
             "Horses" : ["horses/Total_Horses_National.csv", "black"]
